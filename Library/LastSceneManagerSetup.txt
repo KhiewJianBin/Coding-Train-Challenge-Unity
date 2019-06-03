@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/#1 Starfield in Processing/#1 Starfield in Processing.unity
+- path: Assets/#4 Purple Rain/#4 Purple Rain.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
