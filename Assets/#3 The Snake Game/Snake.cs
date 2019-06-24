@@ -22,7 +22,7 @@ public class Snake
     }
     public bool eat(Vector2 pos)
     {
-        float d = Vector2.Distance(new Vector2(x, y), new Vector2(pos.x, pos.y));
+        float d = P5JSExtension.dist(x, y, pos.x, pos.y);
         if (d < 1)
         {
             total++;
@@ -45,7 +45,7 @@ public class Snake
         for (int i = 0; i < tail.Count; i++)
         {
             Vector2 pos = tail[i];
-            var d = Vector2.Distance(new Vector2(x,y),new Vector2(pos.x, pos.y));
+            var d = P5JSExtension.dist(x, y, pos.x, pos.y);
             if (d < 1)
             {
                 Debug.Log("starting over");
@@ -73,19 +73,17 @@ public class Snake
         x = x + xspeed * TheSnakeGame.scl;
         y = y + yspeed * TheSnakeGame.scl;
 
-        x = Mathf.Clamp(x, 0, TheSnakeGame.width - TheSnakeGame.scl);
-        y = Mathf.Clamp(y, 0, TheSnakeGame.height - TheSnakeGame.scl);
+        x = P5JSExtension.constrain(x, 0, P5JSExtension.width - TheSnakeGame.scl);
+        y = P5JSExtension.constrain(y, 0, P5JSExtension.height - TheSnakeGame.scl);
     }
-    public void Show(Texture2D texture)
+    public void Show()
     {
+        P5JSExtension.fill(255);
         for (int i = 0; i < tail.Count; i++)
         {
-            Rect pos = new Rect(tail[i].x, tail[i].y, TheSnakeGame.scl, TheSnakeGame.scl);
-            GUI.DrawTexture(pos, texture);
+            P5JSExtension.rect(tail[i].x, tail[i].y, TheSnakeGame.scl, TheSnakeGame.scl);
         }
 
-        Rect position = new Rect(x, y, TheSnakeGame.scl, TheSnakeGame.scl);
-        GUI.DrawTexture(position, texture);
+        P5JSExtension.rect(x, y, TheSnakeGame.scl, TheSnakeGame.scl);
     }
-    
 }

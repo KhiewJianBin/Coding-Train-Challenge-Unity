@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/#4 Purple Rain/#4 Purple Rain.unity
+- path: Assets/#6 Mitosis Simulation/#6 Mitosis Simulation.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

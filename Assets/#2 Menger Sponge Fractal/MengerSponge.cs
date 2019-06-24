@@ -12,7 +12,7 @@ public class MengerSponge : MonoBehaviour
     {
         group = new GameObject("Group");
 
-        GameObject newbox = GameObject.Instantiate(BoxPrefab);
+        GameObject newbox = Instantiate(BoxPrefab);
         Box b = newbox.AddComponent<Box>();
         b.SetBoxPrefab(BoxPrefab);
         b.SetPosSize(0, 0, 0, 200);

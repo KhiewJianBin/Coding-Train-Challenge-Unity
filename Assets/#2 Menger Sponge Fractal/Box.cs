@@ -32,7 +32,7 @@ public class Box : MonoBehaviour
 
                     if (sum > 1)
                     {
-                        GameObject newbox = GameObject.Instantiate(BoxPrefab);
+                        GameObject newbox = Instantiate(BoxPrefab);
                         Box b = newbox.AddComponent<Box>();
                         b.SetBoxPrefab(BoxPrefab);
                         b.SetPosSize(pos.x + x * newR, pos.y + y * newR, pos.z + z * newR, newR);

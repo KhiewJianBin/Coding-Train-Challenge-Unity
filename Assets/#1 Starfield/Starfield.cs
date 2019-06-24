@@ -6,21 +6,10 @@
 
 public class Starfield : MonoBehaviour
 {
-    //-------------------------------------------------
-    public static int width;
-    public static int height;
-    //-------------------------------------------------
-
-    public Texture2D starTexture;
     Star[] stars = new Star[800];
 
     public static float speed;
-
-    void Awake()
-    {
-        width = Screen.width;
-        height = Screen.height;
-    }
+    
     void Start()
     {
         for (int i = 0; i < 800; i++)
@@ -30,14 +19,14 @@ public class Starfield : MonoBehaviour
     }
     void OnGUI()
     {
-        speed = Extension.Map(Input.mousePosition.x, 0, width, 0, 20);
+        speed = P5JSExtension.map(Input.mousePosition.x, 0, P5JSExtension.width, 0, 20);
 
-        Camera.main.clearFlags = CameraClearFlags.SolidColor;
-        Camera.main.backgroundColor = new Color(0,0,0);
+        P5JSExtension.background(0);
+
         for (int i = 0; i < 800; i++)
         {
             stars[i].Update();
-            stars[i].Show(starTexture);
+            stars[i].Show();
         }
     }
 }
@@ -52,9 +41,11 @@ public class Star
 
     public Star()
     {
-        x = Random.Range(-Starfield.width, Starfield.width);
-        y = Random.Range(-Starfield.height, Starfield.height);
-        z = Random.Range(0, Starfield.width);
+        P5JSExtension.background(0);
+
+        x = P5JSExtension.random(-P5JSExtension.width, P5JSExtension.width);
+        y = P5JSExtension.random(-P5JSExtension.height, P5JSExtension.height);
+        z = P5JSExtension.random(0, P5JSExtension.width);
         pz = z;
     }
     public void Update()
@@ -62,26 +53,31 @@ public class Star
         z = z - Starfield.speed;
         if (z < 1)
         {
-            z = Screen.width;
-            x = Random.Range(-Starfield.width, Starfield.width);
-            y = Random.Range(-Starfield.height, Starfield.height);
+            z = P5JSExtension.width;
+            x = P5JSExtension.random(-P5JSExtension.width, P5JSExtension.width);
+            y = P5JSExtension.random(-P5JSExtension.height, P5JSExtension.height);
             pz = z;
         }
     }
-    public void Show(Texture2D texture)
+    public void Show()
     {
-        float sx = Extension.Map(x / z, 0, 1, 0, Starfield.width);
-        float sy = Extension.Map(y / z, 0, 1, 0, Starfield.height);
-        float r = Extension.Map(z, 0, Starfield.width, 16, 0);
+        float sx = P5JSExtension.map(x / z, 0, 1, 0, P5JSExtension.width);
+        float sy = P5JSExtension.map(y / z, 0, 1, 0, P5JSExtension.height);
+        float r = P5JSExtension.map(z, 0, P5JSExtension.width, 16, 0);
 
-        Rect position = new Rect(sx - r / 2 + Starfield.width / 2, sy - r / 2 + Starfield.height / 2, r, r);
-        GUI.DrawTexture(position, texture);
+        //translate canvas
+        sx += P5JSExtension.width / 2;
+        sy += P5JSExtension.height / 2;
+        P5JSExtension.ellipse(sx, sy , r, r);
 
-        float px = Extension.Map(x / pz, 0, 1, 0, Starfield.width);
-        float py = Extension.Map(y / pz, 0, 1, 0, Starfield.height);
+        float px = P5JSExtension.map(x / pz, 0, 1, 0, P5JSExtension.width);
+        float py = P5JSExtension.map(y / pz, 0, 1, 0, P5JSExtension.height);
 
         pz = z;
 
-        Drawing.DrawLine(new Vector2(px + Starfield.width / 2, py + Starfield.height / 2), new Vector2(sx + Starfield.width / 2, sy + Starfield.height / 2));
+        //translate canvas
+        px += P5JSExtension.width / 2;
+        py += P5JSExtension.height / 2;
+        P5JSExtension.line(px, py, sx, sy);
     }
 }
