@@ -149,9 +149,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea2be3b3c2b176c4ca01e8dcfdbba8c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shipTexture: {fileID: 2800000, guid: c36b83c8ecddb1e49a968217d8d5af02, type: 3}
-  flowerTexture: {fileID: 2800000, guid: 7de27d7340abc954c81a54101a6f7b11, type: 3}
-  dropTexture: {fileID: 2800000, guid: 7ecdfa4c351959f43817b7abbf5290ce, type: 3}
 --- !u!4 &918927500
 Transform:
   m_ObjectHideFlags: 0

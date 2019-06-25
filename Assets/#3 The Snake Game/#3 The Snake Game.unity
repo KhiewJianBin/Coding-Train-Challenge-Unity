@@ -163,8 +163,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 280b505be7b4cde409e809f982921e4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snakeTexture: {fileID: 2800000, guid: 76af3c11caf2f3d4caec29744a738d64, type: 3}
-  foodTexture: {fileID: 2800000, guid: d83c15e6bb225634288d41d65431c3cc, type: 3}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

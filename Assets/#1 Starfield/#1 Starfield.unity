@@ -163,7 +163,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5ef118d83e9c2d45938d206c9bd34f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  starTexture: {fileID: 2800000, guid: 2efce362dee12e04bbfc392c369cb230, type: 3}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
