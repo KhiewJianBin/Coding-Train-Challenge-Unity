@@ -1,5 +1,0 @@
-sceneSetups:
-- path: Assets/#6 Mitosis Simulation/#6 Mitosis Simulation.unity
-  isLoaded: 1
-  isActive: 1
-  isSubScene: 0
