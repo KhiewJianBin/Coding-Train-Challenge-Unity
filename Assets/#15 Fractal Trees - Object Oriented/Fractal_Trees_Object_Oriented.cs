@@ -4,14 +4,14 @@ using UnityEngine;
 public class Fractal_Trees_Object_Oriented : MonoBehaviour
 {
     List<Branch> tree = new List<Branch>();
-    List<PVector2> leaves = new List<PVector2>();
+    List<PVector> leaves = new List<PVector>();
 
     int count = 0;
 
     void Start()
     {
-        PVector2 a = new PVector2(P5JSExtension.width / 2, P5JSExtension.height);
-        PVector2 b = new PVector2(P5JSExtension.width / 2, P5JSExtension.height - 100);
+        PVector a = new PVector(P5JSExtension.width / 2, P5JSExtension.height);
+        PVector b = new PVector(P5JSExtension.width / 2, P5JSExtension.height - 100);
         var root = new Branch(a,b);
 
         tree.Add(root);
@@ -70,10 +70,10 @@ public class Fractal_Trees_Object_Oriented : MonoBehaviour
     }
     class Branch
     {
-        public PVector2 begin;
-        public PVector2 end;
+        public PVector begin;
+        public PVector end;
         public bool finished;
-        public Branch(PVector2 begin, PVector2 end)
+        public Branch(PVector begin, PVector end)
         {
             this.begin = begin;
             this.end = end;
@@ -112,32 +112,5 @@ public class Fractal_Trees_Object_Oriented : MonoBehaviour
         }
     }
 
-    //new class is made, because unity Vector2 is a struct, and struct only gets pass by value and not by refrence
-    public class PVector2
-    {
-        public float x;
-        public float y;
-        public PVector2(float inx,float iny)
-        {
-            x = inx;
-            y = iny;
-        }
-        public static PVector2 operator- (PVector2 v1, PVector2 v2)
-        {
-            return new PVector2(v1.x - v2.x, v1.y - v2.y);
-        }
-        public static PVector2 operator+ (PVector2 v1, PVector2 v2)
-        {
-            return new PVector2(v1.x + v2.x, v1.y + v2.y);
-
-        }
-        public static PVector2 operator* (PVector2 v1, float v)
-        {
-            return new PVector2(v1.x * v, v1.y * v);
-        }
-        public PVector2 copy()
-        {
-            return new PVector2(x,y);
-        }
-    }
+    
 }

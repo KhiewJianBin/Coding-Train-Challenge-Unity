@@ -110,7 +110,7 @@ public class _3D_Fractal_Trees: MonoBehaviour
                 {
                     branch.dir /= branch.count + 1;
                     Vector3 rand = P5JSExtension.random3D();
-                    rand.setMag(0.3f);
+                    rand = rand.setMag(0.3f);
                     branch.dir += rand;
                     this.branches.Add(branch.next());
                     branch.reset();
@@ -124,6 +124,7 @@ public class _3D_Fractal_Trees: MonoBehaviour
             {
                 //leaves[i].show();
             }
+            P5JSExtension.resetShape();
             P5JSExtension.beginShape(MeshTopology.Lines);
             for (var i = 0; i < branches.Count; i++)
             {

@@ -1,0 +1,32 @@
+﻿using System.Collections.Generic;
+using UnityEngine;
+
+public class Double_Pendulum : MonoBehaviour
+{
+    float r1 = 100;
+    float r2 = 100;
+    float m1 = 10;
+    float m2 = 10;
+    float a1 = 0;
+    float a2 = 0;
+
+    void Start()
+    {
+        //600x600
+    }
+    void OnGUI()
+    {
+        P5JSExtension.background(255);
+        P5JSExtension.stroke(0);
+        P5JSExtension.strokeWeight(2);
+
+        P5JSExtension.resetMatrix();
+        P5JSExtension.translate(300, 50);
+
+        float x1 = r1 * Mathf.Sin(a1);
+        float y1 = r1 * Mathf.Cos(a1);
+        P5JSExtension.line(0, 0, x1, y1);
+        P5JSExtension.fill(0);
+        P5JSExtension.ellipse(x1, y1, m1, m1);
+    }
+}

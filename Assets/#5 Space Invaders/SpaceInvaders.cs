@@ -4,9 +4,116 @@ using System.Collections.Generic;
 
 public class SpaceInvaders : MonoBehaviour
 {
+    public class Ship
+    {
+        public float x = P5JSExtension.width / 2;
+        public int xdir = 0;
+
+        public void show()
+        {
+            P5JSExtension.fill(255);
+            P5JSExtension.rectMode(P5JSExtension.CENTER);
+            P5JSExtension.rect(x, P5JSExtension.height - 20, 20, 60);
+        }
+        public void setDir(int dir)
+        {
+            xdir = dir;
+        }
+
+        public void move()
+        {
+            x += xdir * 5;
+        }
+    }
+
+    public class Drop
+    {
+        public float x;
+        public float y;
+        public float r;
+        public bool toDelete;
+
+        public Drop(float inx, float iny)
+        {
+            x = inx;
+            y = iny;
+            r = 8;
+            toDelete = false;
+        }
+
+        public void show()
+        {
+            P5JSExtension.noStroke();
+            P5JSExtension.fill(150, 0, 255, 255);
+            P5JSExtension.ellipse(x, y, r * 2, r * 2);
+        }
+
+        public void evaporate()
+        {
+            toDelete = true;
+        }
+
+        public bool hits(Flower flower)
+        {
+            var d = P5JSExtension.dist(x, y, flower.x, flower.y);
+            if (d < r + flower.r)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public void move()
+        {
+            y = y - 5;
+        }
+    }
+
+    public class Flower
+    {
+        public float x;
+        public float y;
+        public float r;
+        public int xdir;
+
+        public Flower(float inx, float iny)
+        {
+            x = inx;
+            y = iny;
+            r = 30;
+            xdir = 1;
+        }
+
+        public void grow()
+        {
+            r = r + 2;
+        }
+        public void shiftDown()
+        {
+            xdir *= -1;
+            y += r;
+        }
+
+        public void move()
+        {
+            x = x + xdir;
+        }
+
+        public void show()
+        {
+            P5JSExtension.noStroke();
+            P5JSExtension.fill(255, 0, 200, 150);
+            P5JSExtension.ellipse(x, y, r * 2, r * 2);
+        }
+    }
+
+
     Ship ship;
     List<Flower> flowers = new List<Flower>();
-    List<Drop2> drops = new List<Drop2>();
+    List<Drop> drops = new List<Drop>();
 
     void Start()
     {
@@ -26,7 +133,7 @@ public class SpaceInvaders : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Drop2 drop = new Drop2(ship.x, P5JSExtension.height);
+            Drop drop = new Drop(ship.x, P5JSExtension.height);
             drops.Add(drop);
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))

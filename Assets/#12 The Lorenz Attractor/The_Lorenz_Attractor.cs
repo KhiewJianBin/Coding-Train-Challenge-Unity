@@ -33,6 +33,7 @@ public class The_Lorenz_Attractor : MonoBehaviour
         points.Add(new Vector3(x, y, z));
 
         //Note Could not add Hue change overtime,
+        P5JSExtension.resetShape();
         P5JSExtension.beginShape(MeshTopology.LineStrip);
         foreach(Vector3 v in points)
         {

@@ -52,6 +52,7 @@ public class Supershapes3D : MonoBehaviour
             }
         }
 
+        P5JSExtension.resetShape();
         P5JSExtension.beginShape(MeshTopology.Triangles);
         for (int i = 0; i < total; i++)
         {

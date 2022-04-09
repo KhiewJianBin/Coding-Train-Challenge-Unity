@@ -16,6 +16,7 @@ public class Superellipse : MonoBehaviour
         var b = 100;
         var n = slider.value;
 
+        P5JSExtension.resetShape();
         P5JSExtension.beginShape(MeshTopology.LineStrip);
         for (float angle = 0; angle < 2*Mathf.PI; angle += 0.1f)
         {

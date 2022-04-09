@@ -45,10 +45,10 @@ public class Terrain_Generation_with_Perlin_Noise : MonoBehaviour
         gameObject.transform.position = new Vector3(-w / 2, -h / 2 + 50, 0);
         gameObject.transform.rotation = Quaternion.Euler(180 / 3, 0, 0);
 
-
+        P5JSExtension.resetShape();
+        P5JSExtension.beginShape(MeshTopology.LineStrip);
         for (int y = 0; y < rows - 1; y++)
         {
-            P5JSExtension.beginShape(MeshTopology.LineStrip);
             for (int x = 0; x < cols; x++)
             {
                 P5JSExtension.vertex(x * scl, y * scl, terrain[x][y]);
