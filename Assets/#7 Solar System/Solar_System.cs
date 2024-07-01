@@ -1,49 +1,70 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using static P5JSExtension;
 
-public class Solar_System : MonoBehaviour
+
+public class Solar_System : P5JSBehaviour
 {
+    Planet sun;
+
+    protected override void setup()
+    {
+        createCanvas(600, 600);
+        sun = new Planet(50, 0, 0, random(TWO_PI));
+        sun.spawnMoons(5, 1);
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+
+        sun.orbit();
+    }
+
+    protected override void draw()
+    {
+        background(51);
+        translate(width / 2, height / 2);
+        sun.show();
+    }
+
     public class Planet
     {
         float radius;
         float distance;
-        Planet[] planets;
-        float angle;
         float orbitspeed;
+        float angle;
+        List<Planet> planets;
 
-        public Planet(float r, float d, float o)
+        public Planet(float radius, float distance, float orbitspeed, float angle)
         {
-            radius = r;
-            distance = d;
-            angle = P5JSExtension.random(2 * Mathf.PI);
-            orbitspeed = o;
-            //println(angle);
+            this.radius = radius;
+            this.distance = distance;
+            this.orbitspeed = orbitspeed;
+            this.angle = angle;
+            this.planets = new();
         }
 
         public void orbit()
         {
-            angle = angle + orbitspeed;
-            if (planets != null)
+            this.angle += this.orbitspeed;
+            for (int i = 0; i < planets.Count; i++)
             {
-                for (int i = 0; i < planets.Length; i++)
-                {
-                    planets[i].orbit();
-                }
+                planets[i].orbit();
             }
         }
         public void spawnMoons(int total, int level)
         {
-            planets = new Planet[total];
-            for (int i = 0; i < planets.Length; i++)
+            for (int i = 0; i < total; i++)
             {
-                float r = radius / (level * 2);
-                float d = P5JSExtension.random(50f, 150f);
-                float o = P5JSExtension.random(-0.1f, 0.1f);
-                planets[i] = new Planet(r, d / level, o);
+                var r = this.radius / (level * 2);
+                var d = random(50f, 150f);
+                var o = random(-0.1f, 0.1f);
+                var a = random(TWO_PI);
+                this.planets.push(new Planet(r, d / level, o, a));
                 if (level < 3)
                 {
-                    int num = (int)(P5JSExtension.random(0f, 4f));
+                    var num = Mathf.FloorToInt(random(0f, 4f));
                     planets[i].spawnMoons(num, level + 1);
                 }
             }
@@ -51,36 +72,16 @@ public class Solar_System : MonoBehaviour
 
         public void show()
         {
-            P5JSExtension.push();
-            P5JSExtension.fill(255, 100);
-            P5JSExtension.rotate(angle);
-            P5JSExtension.translate(distance, 0);
-            P5JSExtension.ellipse(0, 0, radius * 2, radius * 2);
-            if (planets != null)
+            push();
+            fill(255, 100);
+            rotate(this.angle);
+            translate(this.distance, 0);
+            ellipse(0, 0, this.radius * 2);
+            for (int i = 0; i < planets.Count; i++)
             {
-                for (int i = 0; i < planets.Length; i++)
-                {
-                    planets[i].show();
-                }
+                planets[i].show();
             }
-            P5JSExtension.pop();
+            pop();
         }
-    }
-    Planet sun;
-
-    void Start()
-    {
-        //600x600
-        sun = new Planet(50, 0, 0);
-        sun.spawnMoons(5, 1);
-    }
-
-    void OnGUI()
-    {
-        P5JSExtension.background(0);
-        P5JSExtension.resetMatrix();
-        P5JSExtension.translate(P5JSExtension.width / 2, P5JSExtension.height / 2);
-        sun.show();
-        sun.orbit();
     }
 }

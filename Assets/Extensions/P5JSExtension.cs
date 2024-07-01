@@ -42,8 +42,9 @@ public static class P5JSExtension
 {
     public static int width => Screen.width;
     public static int height => Screen.height;
-    public static float mouseX => Mathf.Clamp(0, Input.mousePosition.x, Screen.width);
-    public static float mouseY => Mathf.Clamp(0, Input.mousePosition.y, Screen.height);
+    public static float mouseX => Mathf.Clamp(Input.mousePosition.x, 0, Screen.width);
+    public static float mouseY => Mathf.Clamp(height - Input.mousePosition.y, 0, Screen.height);
+    public static float TWO_PI => Mathf.PI * 2;
 
     //Math functions extended
     public static Vector2 createVector(float x, float y)
@@ -193,6 +194,17 @@ public static class P5JSExtension
     public static void noFill()
     {
         textureColor.a = 0;
+    }
+    public static void fill(Color32 c)
+    {
+        if (UsingHSB)
+        {
+            textureColor = Color.HSVToRGB(c.r / 255f, c.g / 255f, c.b / 255f);
+        }
+        else
+        {
+            textureColor = c;
+        }
     }
     public static void fill(float r, float g, float b, float a)
     {
@@ -538,4 +550,15 @@ public static class P5JSExtension
     {
         return Vector2.Distance(new Vector2(a.x, a.y), new Vector2(b.x, b.y));
     }
+
+    #region List
+    public static void splice<T>(this List<T> list,int index, int count)
+    {
+        list.RemoveRange(index, count);
+    }
+    public static void push<T>(this List<T> list, T item)
+    {
+        list.Add(item);
+    }
+    #endregion
 }

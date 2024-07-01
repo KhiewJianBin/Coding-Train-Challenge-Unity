@@ -5,6 +5,8 @@ public class P5JSBehaviour : MonoBehaviour
 {
     void Start()
     {
+        frameRate(60);
+
         setup();
     }
 
@@ -22,6 +24,7 @@ public class P5JSBehaviour : MonoBehaviour
             mousePressed();
         }
 
+        keyReleased();
         keyPressed();
     }
 
@@ -29,4 +32,6 @@ public class P5JSBehaviour : MonoBehaviour
     protected virtual void draw() { }
     protected virtual void mousePressed() { }
     protected virtual void keyPressed() { }
+    protected virtual void keyReleased() { }
+
 }
