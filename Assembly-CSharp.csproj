@@ -99,7 +99,6 @@
     <Compile Include="Assets\#24 Perlin Noise Flow Field-todo\Perlin_Noise_Flow_Field.cs" />
     <Compile Include="Assets\#107 Sandpiles-todo\Sandpiles.cs" />
     <Compile Include="Assets\#16 Fractal Trees - L-System\Fractal_Trees_L_System.cs" />
-    <Compile Include="Assets\#7 Solar System\Solar_System.cs" />
     <Compile Include="Assets\CodingTrainChallengeUnity\#3 The Snake Game\TheSnakeGame.cs" />
     <Compile Include="Assets\Spiral Septagon fractal\Spiral_Septagon_fractal.cs" />
     <Compile Include="Assets\#130.1 Drawing with Fourier Transform and Epicycles\codingtrain.cs" />
