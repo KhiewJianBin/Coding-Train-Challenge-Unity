@@ -47,7 +47,7 @@ public static class P5JSExtension
     public static float TWO_PI => Mathf.PI * 2;
 
     //Math functions extended
-    public static Vector2 createVector(float x, float y)
+    public static Vector2 createVector(float x = 0, float y = 0)
     {
         return new Vector2(x, y);
     }
@@ -541,6 +541,12 @@ public static class P5JSExtension
         v *= value;
         return v;
     }
+    public static Vector2 add(this Vector2 v, Vector2 other) => v + other;
+    public static Vector3 add(this Vector3 v, Vector3 other) => v + other;
+    public static Vector2 sub(this Vector2 v, Vector2 other) => v - other;
+    public static Vector3 sub(this Vector3 v, Vector3 other) => v - other;
+    public static Vector2 div(this Vector2 v, float value) => v / value;
+    public static Vector3 div(this Vector3 v, float value) => v / value;
 
     public static PVector rotate(this PVector v, float radians)
     {
@@ -561,4 +567,16 @@ public static class P5JSExtension
         list.Add(item);
     }
     #endregion
+
+
+
+    public static int[][] make2DArray(int cols, int rows)
+    {
+        int[][] arr = new int[cols][];
+        for (int i = 0; i < arr.Length; i++)
+        {
+            arr[i] = new int[rows];
+        }
+        return arr;
+    }
 }
